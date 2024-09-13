@@ -4,16 +4,41 @@
  */
 package com.mycompany.slime_duel;
 
-import com.mycompany.slime_duel.Slime;
 
 /**
  *
  * @author Nitro 5
  */
 public class SlimeSereia  extends Slime {
+SlimeSereia()
+      {
+        Vida=10.0;
+        Mana = 5;
+        Resistencia = 0.0;
+        Multiplicador =1.0;
+        Dragao=0;
+         }
 
+    /**
+     *
+     * @param inimigo
+     */
     @Override
-    public void Especial() {
+    public void Especial(Slime inimigo) {
+        if(Mana>=6)
+        {
+            Mana=2;
+            inimigo.Mana=0;
+        }
+        else
+        {
+            System.out.println("Você não tem mana o suficiente para usar sua habilidade de Sereia! Lembre-se que o minimo de mana necessaria é 6!");
+        }
+    }
+    @Override
+    public int Tipo()
+    {
+        return 3;
     }
     
 }

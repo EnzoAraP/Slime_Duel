@@ -4,14 +4,40 @@
  */
 package com.mycompany.slime_duel;
 
-import com.mycompany.slime_duel.Slime;
 
 /**
  *
  * @author Nitro 5
  */
 public class SlimeDemonio  extends Slime {
-      @Override
-    public void Especial() {
+      
+      SlimeDemonio()
+      {
+        Vida=10.0;
+        Mana = 5;
+        Resistencia = 0.0;
+        Multiplicador =1.0;
+        Dragao=0;
+         }
+
+    /**
+     *
+     * @param inimigo
+     */
+    @Override
+    public void Especial(Slime inimigo) {
+        if (Mana>=4)
+        {
+          Multiplicador = Multiplicador+0.2; 
+          Mana=Mana-4;
+        }
+        else{
+            System.out.println("Você não tem mana o suficiente para usar o seu especial de Demonio!");
+        }
+    }
+    @Override
+    public int Tipo()
+    {
+        return 5;
     }
 }

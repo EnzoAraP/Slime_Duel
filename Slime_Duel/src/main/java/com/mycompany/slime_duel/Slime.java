@@ -8,17 +8,19 @@ package com.mycompany.slime_duel;
  *
  * @author Nitro 5
  */
-abstract class Slime {
-    private Double Vida;
-    private Double Multiplicador;
-    private int Mana;
-    private int Resistencia;
-    private Double Energizado; 
+public abstract class Slime {
+    protected Double Vida;
+    protected Double Multiplicador;
+    protected int Mana;
+    protected Double Resistencia;
+    private Double Energizado;
+    protected int Dragao;
     private int verificadorEnerg;
     public void atacar(Slime machucado)
     {
         if(Mana>=1)
         {
+            
         Double redutor=Multiplicador -machucado.Resistencia +Energizado;
         if(redutor>=0)
         {
@@ -29,11 +31,15 @@ abstract class Slime {
             Energizado=0.0;
         }
         Mana--;
-        }
+}
         else
                 {
                     System.out.println("Não foi possivel atacar! Você não possui mana!");
                 }
+    }
+    public void atacarDragao(SlimeDragao machucado)
+    {
+        
     }
     public void Energizar()
     {
@@ -47,6 +53,6 @@ abstract class Slime {
                     System.out.println("Não foi possivel Energizar!");
                 }
     }
-    public  abstract void Especial();
-    
+    public  abstract void Especial(Slime inimigo);
+    public abstract int Tipo();
 }
