@@ -37,17 +37,18 @@ public class Jogo {
        System.out.println("Jogador "+jogador+" escolha qual tipo de Ancestral voce quer ter!");
            while(erro !=0)
            {
-               tipo=teclado.nextInt();
+             
                erro=0;
            try
-           {
+           { 
+               tipo=teclado.nextInt();
                Errotipo(tipo);
            }
-           catch(ExceptionAncestral | InputMismatchException e)
+           catch(ExceptionAncestral | InputMismatchException  e)
            {
                System.out.println("Escreva um número entre 1 e 5!");
                teclado.nextLine();
-               tipo=teclado.nextInt();
+
                erro++;
               
            }
@@ -95,24 +96,74 @@ public class Jogo {
        Slime Jogador1 =Escolha(1);
        Slime Jogador2  =Escolha(2);
        
-       int fim=-1;
+       
+       int ganhador=-1;
        System.out.println("----------------------------------------------------");
        System.out.println("Inicio do Jogo!! ");
        System.out.println("----------------------------------------------------");
-       while(fim!=0)
+       while(ganhador==-1)
        {
+           
            System.out.println("Inicio do turno "+turno+"!");
            System.out.println("Vida atual dos Slimes:");
            System.out.println("Jogador 1: "+Jogador1.Vida);
            System.out.println("Jogador 2: "+Jogador2.Vida);
+           ganhador=verificadorMorto(Jogador1,2);
+           if(ganhador!=-1)
+           {
+               break;
+           }
+           ganhador=verificadorMorto(Jogador2,1);
+            if(ganhador!=-1)
+           {
+               break;
+           }
+          
            Jogadas(Jogador1,Jogador2,1);
              System.out.println("Vida atual dos Slimes:");
            System.out.println("Jogador 1: "+Jogador1.Vida);
            System.out.println("Jogador 2: "+Jogador2.Vida);
+             if(Jogador2.Dragao==1)
+           {
+             RetirdarJog2((SlimeDragao)Jogador2,2);
+             
+           } 
+              ganhador=verificadorMorto(Jogador1,2);
+                      if(ganhador!=-1)
+           {
+               break;
+           }
+           ganhador=verificadorMorto(Jogador2,1);
+           if(ganhador!=-1)
+           {
+               break;
+           }
            Jogadas(Jogador2,Jogador1,2);
            turno++;
+           Jogador1.Mana=Jogador1.Mana +2;
+           Jogador2.Mana=Jogador2.Mana +2;
+           if(Jogador1.Dragao==1)
+           {
+             Retirador((SlimeDragao)Jogador1);
+             
+           }
+              if(Jogador2.Dragao==1)
+           {
+             RetirdarJog2((SlimeDragao)Jogador2,1);
+             
+           }       
+          
            
        }
+       System.out.println("O jogador "+ganhador+"ganhou!!!!!");
+   }
+   public int verificadorMorto(Slime verificado,int ganhador)
+   {
+       if(verificado.Vida<0.1)
+       {
+           return ganhador;
+       }
+       return -1;
    }
    public void Jogadas(Slime jogador,Slime inimigo,int indentificador)
    {
@@ -124,7 +175,7 @@ public class Jogo {
         int fimrodada=-1;
         while(fimrodada!=0)
         {
-       System.out.println("Digite a habilidade para o jogador "+indentificador+"usar: ");
+       System.out.println("Digite a habilidade para o jogador "+indentificador+"usar: "+"(Mana que possui: "+jogador.Mana+")");
        System.out.println("0: Termina o turno");
        System.out.println("1: Ataque");
        System.out.println("2: Energizar");
@@ -215,6 +266,7 @@ public class Jogo {
    }
          return "";
    }
+  
    public void Errotipo(int tipo) throws ExceptionAncestral
            {
                if(tipo>5||tipo<1)
@@ -222,6 +274,23 @@ public class Jogo {
                    throw new ExceptionAncestral();
                }
            }
+   public void Retirador(SlimeDragao retirado)
+   {
+       if(retirado.Itangivel==1)
+       {
+       retirado.SaiEspecial();
+       }
+   }
+   public void RetirdarJog2(SlimeDragao retirado2,int qual)
+   {
+       if(qual==1)
+       {
+           retirado2.SaiMult();
+       }
+       if(qual==2){
+           retirado2.SaiIntang();
+       }
+   }
    public void ErroHabilidade(int habilidade)throws ExceptionHabilidade
    {
        if(habilidade<0||habilidade>3)

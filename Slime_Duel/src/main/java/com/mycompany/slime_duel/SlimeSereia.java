@@ -17,6 +17,8 @@ SlimeSereia()
         Resistencia = 0.0;
         Multiplicador =1.0;
         Dragao=0;
+        Energizado=0.0;
+         verificadorEnerg=1;
          }
 
     /**

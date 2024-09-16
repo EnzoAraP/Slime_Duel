@@ -10,7 +10,7 @@ package com.mycompany.slime_duel;
  * @author Nitro 5
  */
 public class SlimeDragao  extends Slime {
-     private int Itangivel;
+     public int Itangivel;
     SlimeDragao()
       {
         Vida=10.0;
@@ -19,6 +19,8 @@ public class SlimeDragao  extends Slime {
         Multiplicador =1.0;
         Itangivel=0;
         Dragao=1;
+        Energizado=0.0;
+         verificadorEnerg=1;
          }
 
     /**
@@ -29,9 +31,16 @@ public class SlimeDragao  extends Slime {
     public void Especial(Slime inimigo) {
         if(Mana>=4)
         {
+            if(Itangivel==0)
+            {
             Itangivel = 1;
             Multiplicador= Multiplicador+0.2;
             Mana=Mana-4;
+            }
+            else
+            {
+                System.out.println("Você ja usou seu especial essa rodada!");
+            }
         }
         else
         {
@@ -44,8 +53,24 @@ public class SlimeDragao  extends Slime {
         {
             Itangivel = 0;
             Multiplicador= Multiplicador-0.2;
+            System.out.println("O jogador não está mais intangivel!");
         }
         
+    }
+    public void SaiMult(){
+        if(Itangivel==1)
+        {    
+            Multiplicador= Multiplicador-0.2;    
+        }
+    }
+    public void SaiIntang()
+    {
+         if(Itangivel==1)
+         {
+             Itangivel=0;
+             System.out.println("O jogador não está mais intangivel!");
+             
+         }
     }
     @Override
     public int Tipo()

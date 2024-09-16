@@ -13,9 +13,9 @@ public abstract class Slime {
     protected Double Multiplicador;
     protected int Mana;
     protected Double Resistencia;
-    private Double Energizado;
+    protected Double Energizado;
     protected int Dragao;
-    private int verificadorEnerg;
+    protected int verificadorEnerg;
     public void atacar(Slime machucado)
     {
         if(Mana>=1)
@@ -25,10 +25,12 @@ public abstract class Slime {
         if(redutor>=0)
         {
         machucado.Vida =machucado.Vida -(redutor);
+            System.out.println("Dano causado: "+redutor);
         }
         if(Energizado>0)
         {
             Energizado=0.0;
+            verificadorEnerg=1;
         }
         Mana--;
 }
@@ -39,7 +41,34 @@ public abstract class Slime {
     }
     public void atacarDragao(SlimeDragao machucado)
     {
-        
+        if(Mana>=1)
+        {
+            
+        Double redutor=Multiplicador -machucado.Resistencia +Energizado;
+        if(machucado.Itangivel==0)
+        {
+        if(redutor>=0)
+        {
+        machucado.Vida =machucado.Vida -(redutor);
+            System.out.println("Dano causado: "+redutor);
+        }
+        if(Energizado>0)
+        {
+            Energizado=0.0;
+            verificadorEnerg=1;
+        }
+        }
+        else
+        {
+            System.out.println(" O Slime inimigo está intangivel! Você perdeu a mana porem não atacou!");
+          
+        }
+        Mana--;
+}
+        else
+                {
+                    System.out.println("Não foi possivel atacar! Você não possui mana!");
+                }
     }
     public void Energizar()
     {

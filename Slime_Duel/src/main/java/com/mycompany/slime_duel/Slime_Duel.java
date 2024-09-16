@@ -11,6 +11,7 @@ package com.mycompany.slime_duel;
 public class Slime_Duel {
 
     public static void main(String[] args) {
-
+    Jogo teste = new Jogo();
+    teste.jogo();
     }
 }
