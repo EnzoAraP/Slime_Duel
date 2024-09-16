@@ -27,11 +27,7 @@ public abstract class Slime {
         machucado.Vida =machucado.Vida -(redutor);
             System.out.println("Dano causado: "+redutor);
         }
-        if(Energizado>0)
-        {
-            Energizado=0.0;
-            verificadorEnerg=1;
-        }
+       
         Mana--;
 }
         else
@@ -52,11 +48,7 @@ public abstract class Slime {
         machucado.Vida =machucado.Vida -(redutor);
             System.out.println("Dano causado: "+redutor);
         }
-        if(Energizado>0)
-        {
-            Energizado=0.0;
-            verificadorEnerg=1;
-        }
+        
         }
         else
         {
@@ -81,6 +73,15 @@ public abstract class Slime {
                 {
                     System.out.println("Não foi possivel Energizar!");
                 }
+    }
+    public void RetirarEnergizar()
+    {
+        if(verificadorEnerg==0)
+        {
+            
+            Energizado=0.0;
+            verificadorEnerg=1;
+        }
     }
     public  abstract void Especial(Slime inimigo);
     public abstract int Tipo();

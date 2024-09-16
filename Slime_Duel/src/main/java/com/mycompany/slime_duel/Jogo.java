@@ -151,7 +151,17 @@ public class Jogo {
            {
              RetirdarJog2((SlimeDragao)Jogador2,1);
              
-           }       
+           }   
+              if(Jogador2.verificadorEnerg==0)
+           {
+             Jogador2.RetirarEnergizar();
+             
+           } 
+               if(Jogador1.verificadorEnerg==0)
+           {
+             Jogador1.RetirarEnergizar();
+             
+           } 
           
            
        }
